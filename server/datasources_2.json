@@ -1,0 +1,39 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+
+
+
+  "gym_app":{
+    "host": "35.202.122.71",
+    "port": 27017,
+    "url": "mongodb://root:CttFToN9@35.202.122.71:27017",
+    "database": "gym_app",
+    "password": "CttFToN9",
+    "name": "gym_app",
+    "user": "root",
+    "connector": "mongodb"
+},
+
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "appbiometric@gmail.com",
+          "pass": "oymyxzyaxokshkpn"
+        }
+      }
+    ]
+  }
+}

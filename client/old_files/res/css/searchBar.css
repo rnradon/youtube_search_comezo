@@ -1,0 +1,6 @@
+.select2-container--default .select2-selection--single{
+    border:0px;
+    border-style:none; 
+    outline:none; 
+    box-shadow:none;
+}

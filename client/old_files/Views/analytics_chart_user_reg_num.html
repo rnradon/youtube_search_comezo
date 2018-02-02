@@ -1,0 +1,108 @@
+<link rel="stylesheet" type="text/css" href="res/css/register_user/base.css"/>
+
+<script>
+  $(window).ready(function(){  
+  var access_token = window.location.search.substring(1);
+  $.ajax({ url: '/api/gym_users?' + access_token ,
+          context: document.body,
+          success: function(response){
+             // alert("done");
+          },
+          error: function (response) {
+            // document.getElementById("error").style.display = "block";
+            // $('#error').delay(4000).fadeOut(300);
+            // var resp = response.responseText
+            // console.log(resp)
+            // console.log(response)
+            alert("You are not authenticated to view this page")
+            setTimeout(function() { window.location.replace('/'); }, 0000)
+          },
+          cache: false,
+        });
+  });
+</script>
+<div id="">
+<div ng-include src="'Views/header.html'"></div>
+<div class="container "> 
+<div class="row">
+<div class="col-md-3 col-sm-0 col-xs-0"></div>
+<div class="col-md-3 col-sm-0 col-xs-0"></div><br/>
+<div class="col-md-6 col-sm-12" id = "success" style="color: white;font-size: 13px;background-color: #4caf50;border-radius: 5px; display: none; width: 90%; text-align: center; margin-left: 5%;">
+  Credentials Submitted Successfully. Page will automatically reload now !
+</div> 
+</div>
+</div>
+<div class="container "> 
+<div class="row">
+<div class="col-md-4 col-sm-0 col-xs-0"></div>
+<div class="col-md-4 col-sm-0 col-xs-0"></div><br/>
+<div class="col-md-6 col-sm-12" id = "error" style="color: white;font-size: 13px;background-color: #af4c4c;border-radius: 5px; display: none; width: 90%; text-align: center; margin-left: 5%;">
+  User Already Exists / Enter the Correct Details !
+</div> 
+</div>
+</div>
+
+<div class="container " id="main_form"> 
+
+<!-- <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="display: none;"></iframe> -->
+  <div id="contact" style="margin-top: 10%; margin-bottom: 10%">
+    <h3>Analysis !</h3>
+    <h4>Enter the registration number to get the analytics of that member </h4>
+
+    <script>
+        $("#back_to_admin_landing_page").click(function back_to_admin_landing_page(){
+          var access_token = window.location.search.substring(1);
+          var url = '/admin?' + access_token
+          window.location.href = url
+        });
+    </script>
+    <a href="" id="back_to_admin_landing_page"><button name="submit" type="submit" id="contact-submit" style="background-color: #4c96af; margin-bottom: 3%">Back</button></a>
+    <form id = "myForm" action="" method="post" target="dummyframe">
+    <fieldset>
+      <input placeholder="Registration Number" type="number" tabindex="1" required autofocus name="registration_number" id="registration_number" style="width: 100%; padding-left: 10px;">
+    </fieldset>
+      <button name="submit" type="submit" id="contact-submit">Submit</button>
+
+
+      
+      <script>
+      
+      $(document).ready(function(){
+        $("button").click(function (){
+          var reg_number = $("#registration_number").val();
+          // alert(reg_number)
+        var access_token = window.location.search.substring(1);
+        $('#myForm')
+          .ajaxForm({
+            method: 'GET',
+            url : '/api/gym_users/findOne?filter[where][registration_number]=' + reg_number + '&' + access_token, // or whatever
+            dataType : 'json',
+            success : function (response) {
+                // alert(reg_number)
+                console.log(response.id)
+                // var app = angular.module('my_app', []);
+                // app.controller('myCtrl', function($scope, $http) {
+                //   $http.get('/api/gym_users/findOne?filter[where][registration_number]=' + reg_number + '&' + access_token)
+                //   .then(function(response) {
+                //       $scope.myWelcome = response.data;
+                //   });
+                // });
+                var url = '/health_analytics/id=' + response.id + '/' + access_token
+                window.location.href = url
+            },
+            error: function (response) {
+                alert("Invalid Registration Number. The page will reload automatically. Please enter the correct Registration Number")
+                window.location.reload();
+            },
+            cache: false,
+        });
+          
+        });
+       }); 
+      
+
+      
+      </script>
+    
+</div>
+</div>

@@ -1,0 +1,83 @@
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<script type="text/javascript" src="../js/script.js"></script>
+
+
+<div ng-controller="video_tags" style="padding-top: 10%; padding-left: 10%;">
+  <div class="list-left">
+    <a href = "https://www.youtube.com/embed/{{videos_json_data.video_id}}"> 
+      <img src="{{videos_json_data.thumb}}">
+    </a>
+  </div>
+
+  <div class = "list-right">
+    <h3> <a href = "https://www.youtube.com/embed/{{videos_json_data.video_id}}">{{videos_json_data.title}}</a></h3>
+    <div class = "clearfix"></div>
+    <div ng-repeat="tag in tags_json_data">
+      <h3> {{tag.name}}  
+        <a href="" id = "deleteTag" onclick="return deleteTag();">
+          <p id="tagId" style="display: none;">{{tag.id}}</p>
+          <img src="../img/green_cross.png" style="width: 3%;">
+      </a>
+    </h3>
+    <hr>
+    </div>
+  <form id = "myForm"  method="post" target="dummyframe">
+    <fieldset>
+      <input placeholder="Add Tags" type="text" tabindex="1" required name="name" id="name">
+    </fieldset>
+
+    <p id="id" style="display: none;">{{videos_json_data.id}}</p>
+    <br>
+    <br>
+    <button name="submit" type="submit" onclick="return postTag();">Submit</button>
+  </form>
+  </div>
+  <script>
+
+  function postTag() {
+    var id = document.getElementById('id').innerHTML;
+    console.log(id)
+    var name = document.getElementById('name').value;
+    data = {
+      name: name
+    }
+    var url = "/api/Videos/" + id + "/tags";
+    alert(url);
+    $.ajax({
+      type: "POST",
+      url: url,
+      dataType : 'json',
+      data : data,
+      success : function (response) {
+      console.log(response)
+      window.location.reload();
+      },
+      error: function (response) {
+      alert("ERROR")
+      }
+    });
+  }
+
+  function deleteTag(id) {
+    var id = document.getElementById('tagId').innerHTML;
+    console.log(id);
+    
+    var url = "/api/Tags/" + id ;
+    alert(url);
+    $.ajax({
+      type: "DELETE",
+      url: url,
+      dataType : 'json',
+      success : function (response) {
+      console.log(response)
+      window.location.reload();
+      },
+      error: function (response) {
+      alert("ERROR")
+      }
+    });
+  }
+
+
+  </script>
+</div>

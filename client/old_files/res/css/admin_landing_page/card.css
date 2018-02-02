@@ -1,0 +1,68 @@
+
+.categoryWrap{
+    /*width: 100%;
+    height: auto;
+    background: #fff;
+    box-shadow: 0 0 1px #8c8b86;*/
+    border-radius: 2px 2px 0 0;
+    transition: all 0.1s ease-in-out 0s;
+    margin-bottom: 30px;
+}
+.categoryWrap:hover{
+    position:relative;
+     -webkit-box-shadow: 0 8px 6px -6px #8c8b86 !important;
+       -moz-box-shadow: 0 8px 6px -6px #8c8b86 !important;
+            box-shadow: 0 8px 6px -6px #8c8b86 !important; 
+    top:-3px;
+        transition: all 0.1s ease-in-out 0s;
+        /*box-shadow:2px 2px 2px 2px rgba(0,0,0,0.96)*/
+}
+.catImage{
+    width: 100%;
+    height: 220px;
+    border-radius: 2px 2px 0 0;
+}
+.catLink{
+    background-color: grey;
+    font-size: 12px;
+    border-style: none;
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 2px;
+    position: absolute;
+    top: 5px;
+    margin: 0 10px;
+}
+.catContent{
+    padding: 20px;
+    height: 180px;
+}
+.titleHeading{
+    font-size: 20px;
+    margin: 0 0 20px 0;
+}
+.dateHeading{
+    color: #999;
+    font-weight: normal;
+}
+.btnBg{
+    background-color:rgba(12,151,75,0.8); 
+    border:1px solid rgba(12,151,75,0.8);
+}
+.btnBg:hover{
+    background-color:#238fbd; 
+    border:1px solid #238fbd;
+}
+.cl{
+    clear: both;
+}
+
+.gettickets{
+    visibility: hidden;
+    transform: all 0.9s ease-in-out 0s;
+   
+}
+.categoryWrap:hover > .gettickets{
+    visibility:visible;
+    transform: all 0.9s ease-in-out 0s;
+}

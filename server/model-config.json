@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ]
+  },
+  "User": {
+    "dataSource": "youtube_search",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "youtube_search",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "youtube_search",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "youtube_search",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "youtube_search",
+    "public": false
+  },
+  "Tag": {
+    "dataSource": "youtube_search",
+    "public": true
+  },
+  "Video": {
+    "dataSource": "youtube_search",
+    "public": true
+  }
+}

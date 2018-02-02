@@ -1,0 +1,32 @@
+{
+  "name": "Video",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "video_id": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "thumb": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "tags": {
+      "type": "hasMany",
+      "model": "Tag",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

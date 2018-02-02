@@ -1,0 +1,35 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "youtube_search": {
+    "host": "ds121588.mlab.com",
+    "port": 21588,
+    "url": "mongodb://root:root@ds121588.mlab.com:21588/youtube_search",
+    "database": "youtube_search",
+    "password": "root",
+    "name": "youtube_search",
+    "user": "root",
+    "connector": "mongodb"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "appbiometric@gmail.com",
+          "pass": "oymyxzyaxokshkpn"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YouTube Search Player</title>
+	<!-- JQuery -->
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script type="text/javascript" src="../js/script.js"></script>
+	
+</head>
+<body>
+	<div id="container">
+		<header>
+			<div class="container">
+				<div class="col-md-4">
+					<h1> Search <span> Video </span> </h1>
+					<p> Search all youtube videos</p>
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a href="/all_videos"><h3> All Collections </h3></a>
+				</div>
+			</div>
+		</header>
+
+		<section>
+			<form id="search-form" name = "search-form" onsubmit="return search()">
+				<div class = "fieldcontainer">
+					<input type="search" id="query" class="search-field" placeholder="Search ...">
+					<input type="submit" name="search-btn" id="search-btn" value="">
+				</div>
+			</form>
+
+
+			<ul id="results"></ul>
+			<div id="buttons"></div>
+		</section>
+
+		<footer>
+			<p>Copyright &copy; 2018, All Rights Reserved.</p>
+		</footer>
+	</div>
+</body>
+</html>

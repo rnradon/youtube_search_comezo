@@ -1,0 +1,145 @@
+<link rel="stylesheet" type="text/css" href="res/css/header.css">
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "220px";
+    document.getElementById("main").style.marginLeft = "220px";
+    document.getElementById("arrow").style.display = "none";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.getElementById("arrow").style.display = "block";
+}
+</script>	
+
+<div id="mySidenav" class="sidenav" style="box-shadow: 2px 4px 2px #a9a9a9;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a class="anchor" href="" id="home"><i class="fa fa-home" aria-hidden="true"></i></i> Home</a>
+  <a class="anchor" href="" id="add"><i class="fa fa-plus-circle" aria-hidden="true"></i></i> Add Member</a>
+  <a class="anchor" href="" id="delete"> <i class="fa fa-trash" aria-hidden="true"></i></i> Delete Member</a>
+  <a class="anchor" href="" id="edit"><i class="fa fa-pencil" aria-hidden="true"></i></i> Edit Member</a>
+  <a class="anchor" href="" id="view"><i class="fa fa-book" aria-hidden="true"></i></i> View Members</a>
+  <a class="anchor" href="" id="charts"><i class="fa fa-area-chart" aria-hidden="true"></i> Analysis</a>
+  <a class="anchor" href="" id="change_auth_password"><i class="fa fa-key" aria-hidden="true"></i> Change Password</a>
+  <a class="anchor" href="" id="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+  
+  <!-- <a href="#">Clients</a>
+  <a href="#">Contact</a> -->
+</div>
+
+<script>
+    var unsorted_url = window.location.pathname.split('id=');
+    unsorted_url = unsorted_url[1].split('/access_token=');
+    console.log(unsorted_url)
+    var access_token = unsorted_url[1]
+    access_token = 'access_token=' + access_token
+    console.log("access_token " + access_token)
+   $("#logout").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    
+    var url = '/logout?' + access_token
+    // alert("WITH ID")
+    alert(url)
+
+    $.ajax({
+            method: 'POST',
+            url : '/api/users/logout?' + access_token, // or whatever
+            dataType : 'json',
+            success : function (response) {
+                // alert("LOGOUT")
+                // var app = angular.module('my_app', []);
+                // app.controller('myCtrl', function($scope, $http) {
+                //   $http.get('/api/gym_users/findOne?filter[where][registration_number]=' + reg_number + '&' + access_token)
+                //   .then(function(response) {
+                //       $scope.myWelcome = response.data;
+                //   });
+                // });
+                // var backlen = history.length;
+                // history.go(-backlen);
+                window.location.href = '/';
+            },
+            error: function (response) {
+                // alert("Authentication Timed Out")
+                // setTimeout(function() { window.location.reload(true); }, 2000)
+                window.location.replace('/');
+            },
+            cache: false,
+        });
+    
+  });
+
+
+   $("#charts").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/charts?' + access_token
+    window.location.href = url;
+            
+    
+  });
+
+
+   $("#change_auth_password").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/change_auth_password?' + access_token
+    window.location.href = url;
+            
+    
+  });
+
+
+    $("#home").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/view_gym_users?' + access_token
+    window.location.href = url;
+            
+    
+  });
+
+
+
+
+  $("#add").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/add_gym_user?' + access_token
+    window.location.href = url;
+            
+    
+  });
+
+
+
+  $("#delete").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/del_gym_user?' + access_token
+    window.location.href = url;
+            
+    
+  });
+
+
+
+  $("#edit").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/edit_gym_user?' + access_token
+    window.location.href = url;
+            
+    
+  });
+
+
+  $("#view").click(function logout(){
+    // var access_token = window.location.search.substring(1);
+    var url = '/view_gym_users?' + access_token
+    window.location.href = url;
+            
+    
+  
+
+  });
+</script>
+
+<!-- Use any element to open the sidenav -->
+
+<a href="" style="text-decoration: none"><span onclick="openNav()"><i class="fa fa-bars" aria-hidden="true" id = "arrow" style="font-size: 40px; color: rgb(111, 178, 220);; display: initial;"></i></span></a>

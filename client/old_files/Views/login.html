@@ -1,0 +1,72 @@
+<link rel="stylesheet" type="text/css" href="res/css/register_user/base.css"/>
+
+<div ng-init="checked=true"></div>
+<div class="container"> 
+<div class="row">
+<div class="col-md-3 col-sm-0 col-xs-0"></div>
+<div class="col-md-3 col-sm-0 col-xs-0"></div><br/>
+<div class="col-md-6 col-sm-12" id = "success" style="color: white;font-size: 13px;background-color: #4caf50;border-radius: 5px; display: none; width: 90%; text-align: center; margin-left: 5%;">
+  Credentials Submitted Successfully. You'll be redirected to admin page now !
+</div> 
+</div>
+</div>
+<div class="container"> 
+<div class="row">
+<div class="col-md-4 col-sm-0 col-xs-0"></div>
+<div class="col-md-4 col-sm-0 col-xs-0"></div><br/>
+<div class="col-md-6 col-sm-12" id = "error" style="color: white;font-size: 13px;background-color: #af4c4c;border-radius: 5px; display: none; width: 90%; text-align: center; margin-left: 5%;">
+  Enter the Correct Details !
+</div> 
+</div>
+</div>
+
+<div class="container" id="main_form"> 
+
+<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+  <div id="contact" style="margin-top: 30%; margin-bottom: 0%">
+    <h3 class="text-center"> Log In </h3>
+    <h4>Good to have you back !</h4>
+
+    <form id = "myForm" action="/api/Users/login" method="post" target="dummyframe">
+    <fieldset>
+      <input placeholder="Username" type="text" tabindex="1" required autofocus name="username" style="width: 100%; padding-left: 10px;">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Password" type="password" tabindex="2" required name="password" style="width: 100%; padding-left: 10px; ">
+    </fieldset>
+    
+      <button  class="btn btn-primary" name="submit" type="submit">Submit</button>
+      </form>
+      <a href="/forgot_password" class="col-md-offset-4 col-md-12">Forgot Password ?</a>
+      <br/>
+
+      <script>
+
+      $('#myForm')
+      .ajaxForm({
+        url : '/api/Users/login', // or whatever
+        dataType : 'json',
+        type: "POST",
+        success : function (response) {
+          
+            document.getElementById("success").style.display = "block";
+            $('#success').delay(4000).fadeOut(300);
+            console.log(response.id)
+            // window.location.replace('/view_gym_users?access_token=' + response.id);
+             setTimeout(function() { window.location.replace('/view_gym_users?access_token=' + response.id); }, 1500)
+            
+        },
+        error: function (response) {
+            document.getElementById("error").style.display = "block";
+            $('#error').delay(4000).fadeOut(300);
+            var resp = response.responseText
+            console.log(resp)
+            console.log(response)
+        },
+        cache: false,
+    });
+      </script>
+    
+</div>
+
+

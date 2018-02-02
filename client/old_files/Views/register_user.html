@@ -1,0 +1,125 @@
+<link rel="stylesheet" type="text/css" href="res/css/register_user/base.css"/>
+
+<script>
+  $(window).ready(function(){  
+  var access_token = window.location.search.substring(1);
+  $.ajax({ url: '/api/gym_users?' + access_token ,
+          context: document.body,
+          success: function(response){
+             // alert("done");
+          },
+          error: function (response) {
+            // document.getElementById("error").style.display = "block";
+            // $('#error').delay(4000).fadeOut(300);
+            // var resp = response.responseText
+            // console.log(resp)
+            // console.log(response)
+            alert("FAIL")
+          },
+          cache: false,
+        });
+  });
+</script>
+
+<div id="">
+<div ng-include src="'Views/header.html'" style="padding-top: 20px; padding-left: 20px;"></div>
+<div class="container"> 
+<div class="row">
+<div class="col-md-3 col-sm-0 col-xs-0"></div>
+<div class="col-md-3 col-sm-0 col-xs-0"></div><br/>
+<div class="col-md-6 col-sm-12" id = "success" style="color: white;font-size: 13px;background-color: #4caf50;border-radius: 5px; display: none; width: 90%; text-align: center; margin-left: 5%;">
+  
+</div> 
+</div>
+</div>
+<div class="container " style="margin-top: -3%"> 
+<div class="row">
+<div class="col-md-4 col-sm-0 col-xs-0"></div>
+<div class="col-md-4 col-sm-0 col-xs-0"></div><br/>
+<div class="col-md-6 col-sm-12" id = "error" style="color: white;font-size: 13px;background-color: #af4c4c;border-radius: 5px; display: none; width: 90%; text-align: center; margin-left: 5%;">
+  User Already Exists / Enter the Correct Details !
+</div> 
+</div>
+</div>
+
+<div class="container " id="main_form" style="margin-top: 3%;"> 
+
+<!-- <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="display: none;"></iframe> -->
+  <div id="contact" style="margin-top: 0%; margin-bottom: 10%">
+    <h3>Gym User Registration</h3>
+    <h4>Fill the User form below</h4>
+
+    <script>
+        $("#back_to_admin_landing_page").click(function back_to_admin_landing_page(){
+          var access_token = window.location.search.substring(1);
+          var url = '/view_gym_users?' + access_token
+          window.location.href = url
+        });
+    </script>
+    <a href="" id="back_to_admin_landing_page"><button name="submit" type="submit" id="contact-submit" style="background-color: #4c96af; margin-bottom: 3%">Back</button></a>
+    <form id = "myForm" action="/api/gym_users" method="post" target="dummyframe">
+    <fieldset>
+      <input placeholder="Registration Number" type="number" tabindex="1" required autofocus name="registration_number" style="width: 100%; padding-left: 10px;">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Re Enter Registration Number" type="number" tabindex="2" required name="username" style="width: 100%; padding-left: 10px; ">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Name" type="text" tabindex="3" required name="name">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Address" type="text" tabindex="4" required name="address">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Email" type="email" tabindex="5" required name="email">
+    </fieldset>
+    <fieldset>
+      <div class="row">
+      <div class="col-md-1 col-sm-1 col-xs-1" style="border: 1px solid #ccc; background: #f0f0f0; margin-left:15px; padding: 0.9%;">+91</div>
+      <div class="col-md-1 col-sm-1 col-xs-1" style="padding:0px;margin: 1%;margin-right: -15px;margin-left: 10px;">-</div>
+      <div class="col-md-9 col-sm-9 col-xs-9" style="padding: 0px;width: 76%">
+      <input  placeholder="Phone Number" type="tel" pattern="[789][0-9]{9}" tabindex="6" required name="phone_number" style="width: 100%;">
+      </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+      <div class="col-md-1 col-sm-1 col-xs-1" style="border: 1px solid #ccc; background: #f0f0f0; margin-left:15px; padding: 0.9%;">+91</div>
+      <div class="col-md-1 col-sm-1 col-xs-1" style="padding:0px;margin: 1%;margin-right: -15px;margin-left: 10px;">-</div>
+      <div class="col-md-9 col-sm-9 col-xs-9" style="padding: 0px;width: 76%">
+      <input  placeholder="Re Enter Phone Number" type="tel" pattern="[789][0-9]{9}" tabindex="7" required name="password" style="width: 100%;">
+      </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <input tabindex="8" required name="flag" value = "false" style="display: none;">
+    </fieldset>
+    
+      <button name="submit" type="submit" id="contact-submit">Submit</button>
+      <script>
+
+      $('#myForm')
+      .ajaxForm({
+        url : '/api/gym_users', // or whatever
+        dataType : 'html',
+        success : function (response) {
+            
+            alert("Credentials Submitted Successfully. You'll be redirected to the admin page now !")
+            var url = '/view_gym_users?' + access_token
+            window.location.href = url
+            // location.delay(2000).reload();
+             // setTimeout(function() { window.location.reload(true); }, 1000)
+        },
+        error: function (response) {
+            // alert(response.responseText)
+            alert("User Already Exists -\n(Registration Number / Email / Phone Number must be unique)\n | In-correct details ! |")
+            window.location.reload();
+        },
+        cache: false,
+    });
+      </script>
+    
+</div>
+
+
+</div>

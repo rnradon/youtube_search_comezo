@@ -1,0 +1,31 @@
+{
+  "restApiRoot": "/api",
+  "host": "0.0.0.0",
+  "port": 8080,
+  "remoting": {
+    "context": false,
+    "rest": {
+      "handleErrors": false,
+      "normalizeHttpPath": false,
+      "xml": false
+    },
+    "json": {
+      "strict": false,
+      "limit": "100kb"
+    },
+    "urlencoded": {
+      "extended": true,
+      "limit": "100kb"
+    },
+    "cors": false
+  },
+  "swagger": {
+    "protocol": "https"
+  },
+  "legacyExplorer": false,
+  "logoutSessionsOnSensitiveChanges": true,
+  "GCLOUD_PROJECT": "scenic-parity-172915",
+  "DATA_BACKEND": "mongodb",
+  "MONGO_URL": "mongodb://root:teq8FX8v@35.184.213.125:27017",
+  "MONGO_COLLECTION": "gym_app"
+}

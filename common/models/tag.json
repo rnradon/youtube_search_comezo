@@ -1,0 +1,23 @@
+{
+  "name": "Tag",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "video": {
+      "type": "belongsTo",
+      "model": "Video",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

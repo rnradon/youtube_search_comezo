@@ -1,0 +1,127 @@
+<div ng-controller="edit_user_controller">
+
+
+<link rel="stylesheet" type="text/css" href="res/css/register_user/base.css"/>
+
+<div id=" ">
+<div ng-include src="'Views/header_with_id.html'" style="padding-top: 20px; padding-left: 20px;"></div>
+
+<script>
+   $(window).ready(function(){  
+        // var access_token = window.location.search.substring(1);
+        var unsorted_url = window.location.pathname.split('id=');
+        unsorted_url = unsorted_url[1].split('/access_token=');
+      
+        console.log(unsorted_url)
+        var id = unsorted_url[0]
+        var access_token = unsorted_url[1]
+        $.ajax({ 
+                // url: '/api/gym_users?' + access_token ,
+                url: '/api/gym_users?access_token=' + access_token,
+                context: document.body,
+                success: function(response){
+     
+                 document.getElementById("page_view").style.display = "block";
+                 console.log("SUCCESS " + response)
+                 
+              },
+                error: function (response) {
+                  // document.getElementById("error").style.display = "block";
+                  // $('#error').delay(4000).fadeOut(300);
+                  // var resp = response.responseText
+                  // console.log(resp)
+                  // console.log(response)
+                  alert("You are not authenticated to view this page")
+                  setTimeout(function() { window.location.replace('/'); }, 0000)
+                },
+                cache: false,
+              });
+        });
+</script>
+<div id = "page_view" style="display: none;">
+<div class="container" id="main_form"> 
+
+<!-- <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe" style="display: none;"></iframe> -->
+  <div id="contact" style="margin-top: 10%; margin-bottom: 10%">
+    <h3>Edit User Details</h3>
+    <h4>Edit the details of the user if you wish</h4>
+
+    <script>
+        $("#back_to_admin_landing_page").click(function back_to_admin_landing_page(){
+          var unsorted_url = window.location.pathname.split('id=');
+          unsorted_url = unsorted_url[1].split('/access_token=');
+          // alert("WORKING")
+          console.log(unsorted_url)
+          var id = unsorted_url[0]
+          var access_token = unsorted_url[1]
+          var url = '/view_gym_users?access_token=' + access_token
+          window.location.href = url
+        });
+    </script>
+    <a href="" id="back_to_admin_landing_page"><button name="submit" type="submit" id="contact-submit" style="background-color: #4c96af; margin-bottom: 3%">Back</button></a>
+    <form id = "myForm" action="" method="put" target="dummyframe">
+    <fieldset>
+      <input id="registration_number" type="number" tabindex="1" name="registration_number" readonly required value={{users_json_data.registration_number}}  style="width: 100%; padding-left: 10px;">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Name" type="text" tabindex="3" value={{users_json_data.name}} required name="name">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Address" type="text" tabindex="4" value={{users_json_data.address}} required name="address">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Email" type="email" tabindex="5" value={{users_json_data.email}} readonly required name="email">
+    </fieldset>
+    <fieldset>
+      <div class="row">
+      <div class="col-md-1 col-sm-1 col-xs-1" style="border: 1px solid #ccc; background: #f0f0f0; margin-left:15px; padding: 0.9%;">+91</div>
+      <div class="col-md-1 col-sm-1 col-xs-1" style="padding:0px;margin: 1%;margin-right: -15px;margin-left: 10px;">-</div>
+      <div class="col-md-9 col-sm-9 col-xs-9" style="padding: 0px;width: 76%">
+      <input  placeholder="Phone Number" type="tel" pattern="[789][0-9]{9}" tabindex="6" required value={{users_json_data.phone_number}} name="phone_number" style="width: 100%;">
+      </div>
+      </div>
+    </fieldset>
+      <button name="submit" type="submit" id="contact-submit" class="edit">Submit</button>
+      <script>
+
+      $(".edit").click(function(event){
+        var unsorted_url = window.location.pathname.split('id=');
+         unsorted_url = unsorted_url[1].split('/access_token=');
+        // alert("WORKING")
+        console.log(unsorted_url)
+    var id = unsorted_url[0]
+    var access_token = unsorted_url[1]
+
+         $('#myForm')
+        .ajaxForm({
+            method: 'PATCH',
+            url : '/api/gym_users/' + id + '?' + 'access_token=' + access_token, // or whatever
+            dataType : 'json',
+            
+            success : function (response) {
+                alert("Successfully edited the user.")
+                // var app = angular.module('my_app', []);
+                // app.controller('myCtrl', function($scope, $http) {
+                //   $http.get('/api/gym_users/findOne?filter[where][registration_number]=' + reg_number + '&' + access_token)
+                //   .then(function(response) {
+                //       $scope.myWelcome = response.data;
+                //   });
+                // });
+                var url = '/view_gym_users?access_token=' + access_token
+                window.location.href = url; //CHANGE THIS TO VIEW USER CARD
+            },
+            error: function (response) {
+                alert("User with same details already exists -\n(Phone Number must be unique)\n\n | In-correct details ! |")
+                console.log(response)
+                // setTimeout(function() { window.location.reload(true); }, 2000)
+            },
+            cache: false,
+        });
+          
+        });
+      
+      </script>
+    
+</div>
+</div>
+</div>
